@@ -1,0 +1,5 @@
+[
+  { "id": "kb1", "text": "Orders are shipped within 24 hours of confirmation." },
+  { "id": "kb2", "text": "Tracking information is emailed once the order ships." },
+  { "id": "kb3", "text": "Returns are accepted within 30 days of delivery." }
+]
