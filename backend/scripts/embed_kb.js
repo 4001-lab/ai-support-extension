@@ -1,27 +1,27 @@
-import fs from "fs";
 import kb from "../data/kb.json" with { type: "json" };
 import { createEmbedding } from "../src/services/genai.js";
+import { supabase } from "../src/services/supabase.js";
 
 async function run() {
-  const embedded = [];
-
   for (const doc of kb) {
-    console.log(`Embedding: ${doc.id}`);
+    console.log(`Embedding ${doc.id}`);
 
     const embedding = await createEmbedding(doc.text);
-    embedded.push({
+
+    const { data, error } = await supabase.from("kb_embeddings").upsert({
       id: doc.id,
-      text: doc.text,
+      content: doc.text,
       embedding
     });
+
+    if (error) {
+      console.error(`Error inserting ${doc.id}:`, error);
+    } else {
+      console.log(`✅ Inserted ${doc.id}`);
+    }
   }
 
-  fs.writeFileSync(
-    "../data/kb_embeddings.json",
-    JSON.stringify(embedded, null, 2)
-  );
-
-  console.log("✅ KB embedded using @google/genai");
+  console.log("✅ KB embedded & uploaded to Supabase");
 }
 
 run();
