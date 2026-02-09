@@ -7,28 +7,35 @@
 <body>
   <div class="container">
     <header>
+      <div class="header-icon">✨</div>
       <h3>AI Support Assistant</h3>
-      <p class="subtitle">Generate accurate customer replies</p>
+      <p class="subtitle">Powered by Gemini AI</p>
     </header>
 
-    <label>Customer Message</label>
-    <textarea
-      id="message"
-      placeholder="Paste the customer's question here..."
-    ></textarea>
+    <div class="input-group">
+      <label>Customer Message</label>
+      <textarea
+        id="message"
+        placeholder="What's the customer asking about?"
+      ></textarea>
+    </div>
 
-    <label>Order ID <span class="optional">(optional)</span></label>
-    <input id="orderId" placeholder="e.g. 12345" />
+    <div class="input-group">
+      <label>Order ID <span class="optional">(optional)</span></label>
+      <input id="orderId" type="text" placeholder="12345" />
+    </div>
 
-    <button id="generate">
-      <span id="btnText">Generate Reply</span>
+    <button id="generate" class="primary-btn">
       <span id="loader" class="hidden"></span>
+      <span id="btnText">✨ Generate Reply</span>
     </button>
 
     <div id="outputContainer" class="hidden">
-      <label>AI Response</label>
-      <pre id="output"></pre>
-      <button id="copyBtn" class="secondary">Copy</button>
+      <div class="output-header">
+        <label>AI Response</label>
+        <button id="copyBtn" class="copy-btn">📋 Copy</button>
+      </div>
+      <div id="output" class="output-text"></div>
     </div>
 
     <div id="error" class="error hidden"></div>

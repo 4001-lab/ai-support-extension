@@ -7,7 +7,7 @@ Content-Type: application/json
 }
 
 ### Test 2: With context
-POST http://localhost:3000/generate-reply
+POST https://ai-support-extension.vercel.app/api/generateReply
 Content-Type: application/json
 
 {

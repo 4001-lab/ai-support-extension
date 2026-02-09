@@ -81,6 +81,6 @@ generateBtn.addEventListener("click", async () => {
 
 copyBtn.addEventListener("click", () => {
   navigator.clipboard.writeText(outputEl.textContent);
-  copyBtn.textContent = "Copied!";
-  setTimeout(() => (copyBtn.textContent = "Copy"), 1200);
+  copyBtn.textContent = "✅ Copied!";
+  setTimeout(() => (copyBtn.textContent = "📋 Copy"), 1500);
 });
