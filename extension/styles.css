@@ -1,14 +1,120 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  width: 300px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  width: 380px;
+  margin: 0;
+  background: #f9fafb;
+}
+
+.container {
+  padding: 14px;
+}
+
+header h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.subtitle {
+  margin: 4px 0 12px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+label {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.optional {
+  font-weight: 400;
+  color: #9ca3af;
+}
+
+textarea,
+input {
+  width: 100%;
+  padding: 8px;
+  font-size: 13px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  margin-bottom: 10px;
 }
 
 textarea {
-  width: 100%;
-  height: 80px;
+  height: 90px;
+  resize: vertical;
 }
 
 button {
   width: 100%;
-  margin-top: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  background: #4f46e5;
+  color: white;
+}
+
+button:hover {
+  background: #4338ca;
+}
+
+button.secondary {
+  background: #e5e7eb;
+  color: #111827;
+  margin-top: 6px;
+}
+
+button.secondary:hover {
+  background: #d1d5db;
+}
+
+#outputContainer {
+  margin-top: 12px;
+}
+
+pre {
+  background: #111827;
+  color: #f9fafb;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: pre-wrap;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.error {
+  margin-top: 8px;
+  color: #b91c1c;
+  font-size: 12px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Loader */
+#loader {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

@@ -1,10 +1,10 @@
 import { getRelevantDocs } from "../src/services/rag.js";
 import { getOrderById } from "../src/services/orders.js";
 import { generatePrompt } from "../src/utils/prompt.js";
-import { generateText } from "../src/services/genai.js";
+import { generateTextStream } from "../src/services/genai.js";
 
 export default async function handler(req, res) {
-    // CORS headers
+  // CORS headers
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader(
@@ -28,9 +28,19 @@ export default async function handler(req, res) {
     const orderData = orderId ? await getOrderById(orderId) : null;
 
     const prompt = generatePrompt(message, kbDocs, orderData);
-    const reply = await generateText(prompt);
 
-    res.status(200).json({ reply });
+    // Set headers for streaming
+    res.setHeader("Content-Type", "text/event-stream");
+    res.setHeader("Cache-Control", "no-cache");
+    res.setHeader("Connection", "keep-alive");
+
+    // Stream the response
+    for await (const chunk of generateTextStream(prompt)) {
+      res.write(`data: ${JSON.stringify({ chunk })}\n\n`);
+    }
+
+    res.write(`data: [DONE]\n\n`);
+    res.end();
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Failed to generate reply" });

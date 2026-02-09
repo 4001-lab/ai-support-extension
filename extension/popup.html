@@ -1,17 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <h3>AI Support Reply</h3>
+  <div class="container">
+    <header>
+      <h3>AI Support Assistant</h3>
+      <p class="subtitle">Generate accurate customer replies</p>
+    </header>
 
-  <textarea id="message" placeholder="Customer message"></textarea>
-  <input id="orderId" placeholder="Order ID (optional)" />
+    <label>Customer Message</label>
+    <textarea
+      id="message"
+      placeholder="Paste the customer's question here..."
+    ></textarea>
 
-  <button id="generate">Generate Reply</button>
+    <label>Order ID <span class="optional">(optional)</span></label>
+    <input id="orderId" placeholder="e.g. 12345" />
 
-  <pre id="output"></pre>
+    <button id="generate">
+      <span id="btnText">Generate Reply</span>
+      <span id="loader" class="hidden"></span>
+    </button>
+
+    <div id="outputContainer" class="hidden">
+      <label>AI Response</label>
+      <pre id="output"></pre>
+      <button id="copyBtn" class="secondary">Copy</button>
+    </div>
+
+    <div id="error" class="error hidden"></div>
+  </div>
 
   <script src="popup.js"></script>
 </body>

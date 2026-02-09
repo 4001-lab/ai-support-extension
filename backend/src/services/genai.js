@@ -21,13 +21,14 @@ export async function createEmbedding(text) {
   return response.embeddings[0].values; 
 }
 
-/* ---------- TEXT GENERATION ---------- */
-export async function generateText(prompt) {
-  const response = await client.models.generateContent({
+/* ---------- TEXT GENERATION STREAM ---------- */
+export async function* generateTextStream(prompt) {
+  const response = await client.models.generateContentStream({
     model: "gemini-3-flash-preview",
-    contents: [{ parts: [{ text: prompt }] }]
+    contents: prompt
   });
 
-  // Use the new simplified helper
-  return response.text; 
+  for await (const chunk of response) {
+    yield chunk.text;
+  }
 }
