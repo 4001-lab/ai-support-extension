@@ -1,34 +1,23 @@
-import embeddings from "../../data/kb_embeddings.json" with { type: "json" };
 import { createEmbedding } from "./genai.js";
-
-function cosineSimilarity(a, b) {
-  let dot = 0;
-  let normA = 0;
-  let normB = 0;
-
-  for (let i = 0; i < a.length; i++) {
-    dot += a[i] * b[i];
-    normA += a[i] * a[i];
-    normB += b[i] * b[i];
-  }
-
-  return dot / (Math.sqrt(normA) * Math.sqrt(normB));
-}
+import { supabase } from "./supabase.js";
 
 export async function getRelevantDocs(
   query,
   topK = 3,
-  minScore = 0.25   // ⭐ similarity threshold
+  minScore = 0.25
 ) {
   const queryEmbedding = await createEmbedding(query);
 
-  return embeddings
-    .map(doc => ({
-      text: doc.text,
-      score: cosineSimilarity(queryEmbedding, doc.embedding)
-    }))
-    .filter(d => d.score >= minScore)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, topK)
-    .map(d => d.text);
+  const { data, error } = await supabase.rpc("match_kb", {
+    query_embedding: queryEmbedding,
+    match_threshold: minScore,
+    match_count: topK
+  });
+
+  if (error) {
+    console.error(error);
+    return [];
+  }
+
+  return data.map(d => d.content);
 }
