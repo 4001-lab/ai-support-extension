@@ -1,8 +1,9 @@
 document.getElementById("generate").addEventListener("click", async () => {
   const message = document.getElementById("message").value;
   const orderId = document.getElementById("orderId").value;
-
-  const res = await fetch("http://localhost:3000/generate-reply", {
+  const BACKEND_URL = "https://ai-support-extension-bx5j-cq1wekmqc-salmanfs-projects.vercel.app/api/generate-reply.js"; // Change to your backend URL if different
+  
+  const res = await fetch(BACKEND_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message, orderId })
