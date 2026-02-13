@@ -6,6 +6,17 @@ A fully deployed Chrome extension powered by Google Gemini AI that helps custome
 
 **Live Backend**: `https://ai-support-extension.vercel.app`
 
+## Screenshots
+
+### Extension Interface
+![Extension Popup](screenshots/ai-support-chrome-extension-popup.png)
+
+### Generating Response
+![Generating](screenshots/ai-support-chrome-extension-promting.png)
+
+### AI Response
+![AI Response](screenshots/ai-support-chrome-extension-AIResponsefullview.png)
+
 ## Features
 
 - **AI-Powered Responses**: Leverages Google Gemini AI for natural language generation
