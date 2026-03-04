@@ -19,8 +19,8 @@ A fully deployed Chrome extension powered by Google Gemini AI that helps custome
 
 ## Features
 
-- **AI-Powered Responses**: Leverages Google Gemini AI for natural language generation
-- **RAG Integration**: Retrieves relevant information from knowledge base using vector embeddings
+- **AI-Powered Responses**: Leverages Groq AI (Llama 3.3 70B) for fast natural language generation
+- **RAG Integration**: Retrieves relevant information from knowledge base using Gemini vector embeddings
 - **Order Lookup**: Fetches real-time order data from Supabase
 - **Chrome Extension**: Easy-to-use popup interface for support agents
 - **Production Deployment**: Live on Vercel with serverless architecture
@@ -58,7 +58,8 @@ ai-support-extension/
 ### Prerequisites
 
 - Node.js (v18+)
-- Google Gemini API key ([Get one here](https://ai.google.dev/))
+- Groq API key ([Get one here](https://console.groq.com/keys))
+- Google Gemini API key for embeddings ([Get one here](https://ai.google.dev/))
 - Supabase account and project ([Sign up](https://supabase.com/))
 - Vercel account ([Sign up](https://vercel.com/))
 
@@ -79,6 +80,7 @@ ai-support-extension/
    Create a `.env` file in the `backend/` directory:
    ```env
    PORT=3000
+   GROQ_API_KEY=your_groq_api_key
    GEMINI_API_KEY=your_gemini_api_key
    SUPABASE_URL=your_supabase_url
    SUPABASE_SERVICE_ROLE_KEY=your_supabase_key
@@ -136,16 +138,16 @@ const API_URL = "https://ai-support-extension.vercel.app/api/generateReply";
 ## How It Works
 
 1. **User Input**: Support agent enters customer message via extension
-2. **RAG Retrieval**: Backend searches knowledge base using vector similarity
+2. **RAG Retrieval**: Backend searches knowledge base using Gemini vector embeddings
 3. **Order Lookup**: If Order ID provided, fetches data from Supabase
-4. **AI Generation**: Gemini AI generates contextual response using retrieved data
+4. **AI Generation**: Groq AI (Llama 3.3 70B) generates contextual response using retrieved data
 5. **Response Display**: Extension shows formatted reply with copy functionality
 
 ## Technologies
 
 - **Frontend**: Vanilla JavaScript, HTML, CSS
 - **Backend**: Node.js, Vercel Serverless Functions
-- **AI**: Google Gemini API
+- **AI**: Groq API (Llama 3.3 70B), Google Gemini (Embeddings)
 - **Database**: Supabase (PostgreSQL)
 - **Vector Search**: Custom embedding-based RAG
 
@@ -156,6 +158,7 @@ const API_URL = "https://ai-support-extension.vercel.app/api/generateReply";
 ### Environment Variables (Vercel Dashboard)
 
 Set these in your Vercel project settings:
+- `GROQ_API_KEY`
 - `GEMINI_API_KEY`
 - `SUPABASE_URL`
 - `SUPABASE_SERVICE_ROLE_KEY`
