@@ -1,4 +1,4 @@
-import kb from "../data/kb.json" with { type: "json" };
+import kb from "../knowledge-base/kb.json" with { type: "json" };
 import { createEmbedding } from "../src/services/genai.js";
 import { supabase } from "../src/services/supabase.js";
 
@@ -25,3 +25,5 @@ async function run() {
 }
 
 run();
+
+// Run this script once with `node backend/scripts/embed_kb.js` after generating the kb.json to create embeddings and upload them to Supabase.
