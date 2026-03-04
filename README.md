@@ -38,9 +38,12 @@ ai-support-extension/
 │   │   ├── services/              # Business logic (genai, rag, orders)
 │   │   └── utils/                 # Helper functions
 │   ├── data/
-│   │   └── kb.json                # Knowledge base content
+│   │   └── *.txt                  # Knowledge base text files
+│   ├── knowledge-base/
+│   │   └── kb.json                # Generated knowledge base
 │   ├── scripts/
-│   │   └── embed_kb.js            # One-time embedding script
+│   │   ├── generate_kb.js         # Generate KB from text files
+│   │   └── embed_kb.js            # Create embeddings script
 │   ├── .env                       # Environment variables
 │   └── package.json
 └── extension/
@@ -81,13 +84,21 @@ ai-support-extension/
    SUPABASE_SERVICE_ROLE_KEY=your_supabase_key
    ```
 
-4. **Generate knowledge base embeddings** (one-time setup)
+4. **Generate knowledge base** (one-time setup)
+   
+   Add your knowledge base content as `.txt` files in `backend/data/` directory, then:
+   ```bash
+   node scripts/generate_kb.js
+   ```
+   This reads all text files from `data/` and generates `knowledge-base/kb.json`.
+
+5. **Create embeddings** (one-time setup)
    ```bash
    node scripts/embed_kb.js
    ```
-   This reads `data/kb.json`, creates vector embeddings, and saves them for RAG retrieval.
+   This reads `knowledge-base/kb.json`, creates vector embeddings, and saves them to Supabase.
 
-5. **Deploy to Vercel**
+6. **Deploy to Vercel**
    ```bash
    vercel
    ```
@@ -159,7 +170,7 @@ Set these in your Vercel project settings:
 ## Development
 
 - **Test API**: Use `backend/api-tests.http` with REST Client extension
-- **Update KB**: Modify `backend/data/kb.json` and re-run embedding script
+- **Update KB**: Add/modify `.txt` files in `backend/data/`, then run `node scripts/generate_kb.js` and `node scripts/embed_kb.js`
 - **Customize Prompts**: Edit prompt templates in `backend/src/utils/`
 
 ## License
