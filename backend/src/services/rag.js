@@ -3,7 +3,7 @@ import { supabase } from "./supabase.js";
 
 export async function getRelevantDocs(
   query,
-  topK = 3,
+  topK = 5,
   minScore = 0.25
 ) {
   const queryEmbedding = await createEmbedding(query);
