@@ -32,7 +32,7 @@ export async function* generateTextStream(prompt) {
     },
     body: JSON.stringify({
       model: 'llama-3.3-70b-versatile',
-      messages: [{ role: 'user', content: prompt }],
+      messages: [{ role: 'system', content: 'You are a helpful human customer support assistant' }, { role: 'user', content: prompt }],
       stream: true
     })
   });
