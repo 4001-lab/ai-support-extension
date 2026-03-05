@@ -1,4 +1,4 @@
-import { supabase } from "../src/services/supabase.js";
+import { supabase } from './supabase.js';
 
 export async function getOrderById(orderId) {
   const { data, error } = await supabase
