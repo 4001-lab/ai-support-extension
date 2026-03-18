@@ -21,6 +21,7 @@ A fully deployed Chrome extension powered by Google Gemini AI that helps custome
 
 - **AI-Powered Responses**: Leverages Groq AI (Llama 3.3 70B) for fast natural language generation
 - **RAG Integration**: Retrieves relevant information from knowledge base using Gemini vector embeddings
+- **Sample Data**: Knowledge base and embeddings are based on [Foodpanda](https://www.foodpanda.com/) customer support scenarios (FAQs, policies, order flows)
 - **Order Lookup**: Fetches real-time order data from Supabase
 - **Chrome Extension**: Easy-to-use popup interface for support agents
 - **Production Deployment**: Live on Vercel with serverless architecture
@@ -169,6 +170,10 @@ Set these in your Vercel project settings:
 2. Zip the `extension/` directory
 3. Upload and submit for review
 4. Follow [publishing guidelines](https://developer.chrome.com/docs/webstore/publish/)
+
+## Sample Data
+
+The included knowledge base (`backend/data/`) and pre-generated embeddings in Supabase are based on **Foodpanda** customer support content — covering topics like order tracking, cancellations, refunds, and delivery policies. This serves as a working demo; replace with your own `.txt` files and re-run the embedding scripts to adapt to any domain.
 
 ## Development
 
