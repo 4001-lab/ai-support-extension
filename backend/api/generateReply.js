@@ -26,7 +26,7 @@ export default async function handler(req, res) {
 
     const kbDocs = await getRelevantDocs(message);
     // If orderId is provided, fetch order details; otherwise, set to null
-    const orderData = orderId ? await getOrderById(orderId) : null;
+    const orderData = orderId ? await getOrderById(orderId) : undefined;
 
     const prompt = generatePrompt(message, kbDocs, orderData);
 
