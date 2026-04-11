@@ -44,7 +44,6 @@ export async function* generateTextStream(prompt) {
                 - Keep responses concise, clear, and friendly.
                 - If order-related, prioritize ORDER DATA over CONTEXT.
                 - Never sound robotic.
-                - When using data from CONTEXT, always rephrase it into natural, grammatically correct sentences. Never copy raw or fragmented text directly.
                 `
       },
       { role: 'user', content: prompt }],
