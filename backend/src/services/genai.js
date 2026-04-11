@@ -19,7 +19,7 @@ export async function createEmbedding(text) {
     }
   });
 
-  return response.embeddings[0].values; 
+  return response.embeddings[0].values;
 }
 
 /* ---------- TEXT GENERATION STREAM (GROQ) ---------- */
@@ -32,7 +32,22 @@ export async function* generateTextStream(prompt) {
     },
     body: JSON.stringify({
       model: 'llama-3.3-70b-versatile',
-      messages: [{ role: 'system', content: 'You are a helpful human customer support assistant' }, { role: 'user', content: prompt }],
+      messages: [{
+        role: "system",
+        content: `
+                You are a professional customer support assistant.
+
+                RULES:
+                - Answer ONLY using the provided CONTEXT and ORDER DATA.
+                - If the answer is not explicitly available, say: "I’m sorry, I don’t have that information."
+                - Do NOT guess or make up information.
+                - Keep responses concise, clear, and friendly.
+                - If order-related, prioritize ORDER DATA over CONTEXT.
+                - Answer in 2-4 sentences max.
+                - Never sound robotic.
+                `
+      },
+      { role: 'user', content: prompt }],
       stream: true
     })
   });
@@ -50,7 +65,7 @@ export async function* generateTextStream(prompt) {
     for (const line of lines) {
       const data = line.replace('data: ', '').trim();
       if (data === '[DONE]') continue;
-      
+
       try {
         const parsed = JSON.parse(data);
         const content = parsed.choices[0]?.delta?.content;

@@ -12,12 +12,6 @@ export function generatePrompt(userMessage, kbDocs, orderData) {
   // 3. Return a single formatted string
   // We use Markdown headers (#) to help the model separate instructions from data
   return `
-    # ROLE & INSTRUCTIONS
-    You are a helpful human customer support assistant.
-    1. Answer the customer's question using ONLY the content in the "CONTEXT" and "ORDER DATA" sections below.
-    2. If the answer is not found in the context, politely say you don't know. Do not invent information.
-    3. Keep your tone friendly and concise.
-
     # CONTEXT (Knowledge Base)
     ${contextSection}
 
