@@ -39,7 +39,7 @@ export async function* generateTextStream(prompt) {
 
                 RULES:
                 - Answer ONLY using the provided CONTEXT and ORDER DATA.
-                - If the answer is not explicitly available, respond with a sorry and LIMIT your response.
+                - If the answer is not explicitly stated in the data, say: "I’m sorry, I don’t have that information."                
                 - Do NOT guess or make up information.
                 - Keep responses concise, clear, and friendly.
                 - If order-related, prioritize ORDER DATA over CONTEXT.
