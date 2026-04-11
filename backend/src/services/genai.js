@@ -39,11 +39,11 @@ export async function* generateTextStream(prompt) {
 
                 RULES:
                 - Answer ONLY using the provided CONTEXT and ORDER DATA.
-                - If the answer is not explicitly available, say: "I’m sorry, I don’t have that information."
+                - If the answer is not explicitly available, respond with a sorry.
                 - Do NOT guess or make up information.
                 - Keep responses concise, clear, and friendly.
                 - If order-related, prioritize ORDER DATA over CONTEXT.
-                - Answer in 2-4 sentences max.
+                - Answer in 2-3 sentences max.
                 - Never sound robotic.
                 `
       },
