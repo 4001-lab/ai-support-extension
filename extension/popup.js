@@ -58,6 +58,7 @@ generateBtn.addEventListener("click", async () => {
             const parsed = JSON.parse(data);
             fullText += parsed.chunk;
             outputEl.textContent = fullText;
+            outputEl.scrollTop = outputEl.scrollHeight;
           } catch (e) {
             // Skip invalid JSON
           }
